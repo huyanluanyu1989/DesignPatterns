@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>new运算符</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Person(name){
+		this.name = name;
+	}
+	Person.prototype.getName = function(){
+		return this.name;
+	}
+	// var a = new Person('张三');
+	// console.log(a.name);
+	// console.log(a.getName());
+	// console.log(Object.getPrototypeOf(a) === Person.prototype);
+
+	// var objectFactory = function(){
+	// 	var obj = new Object();
+	// 	Construtor = [].shift.call(arguments);
+	// 	obj.__proto__ = Construtor.prototype;
+	// 	var ret = Construtor.apply(obj, arguments);
+	// 	return typeof ret === 'object' ? ret : obj ;
+	// }
+
+	// var a = objectFactory(Person, 'sven');
+	// // var a = new Person('Remen')
+	// console.log(a.name);
+	// console.log(a.getName());
+	// console.log(Object.getPrototypeOf(a) === Person.prototype);
+
+
+	// var obj = {name:'sven'};
+	// var A = function(){}
+	// A.prototype = obj;
+
+	// var a = new A();
+	// console.log(a.name)
+
+	//一个类继承自另一个类时
+	// var A = function(){};
+	// A.prototype = {name : 'sven'};
+
+	// var B = function(){};
+	// B.prototype = new A();
+
+	// var b = new B();
+	// var a = new A();
+	// console.log(b.name)
+
+</script>
+</body>
+</html>

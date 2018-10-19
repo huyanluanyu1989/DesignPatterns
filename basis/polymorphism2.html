@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>extends</title>
+</head>
+<body>
+<script type="text/javascript">
+	var goolgeMap = {
+		show:function(){
+			console.log("谷歌地图")
+		}
+	}
+	var baiduMap = {
+		show:function(){
+			console.log("百度地图");
+		}
+	}
+	var renderMap = function(map){
+		if(map.show instanceof Function){
+			map.show();
+		}
+	}
+	renderMap(goolgeMap);
+	renderMap(baiduMap);
+</script>
+</body>
+</html>

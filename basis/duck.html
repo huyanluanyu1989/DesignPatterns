@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>duck typing</title>
+</head>
+<body>
+<script type="text/javascript">
+	var duck = {
+		duckSinging : function(){
+			console.log('嘎嘎嘎');
+		}
+	}
+	var chicken = {
+		duckSinging : function(){
+			console.log('嘎嘎嘎');
+		}
+	}
+
+	var choir = [];
+	var joinchoir = function(animal){
+		if(animal && typeof(animal.duckSinging) === 'function'){
+			choir.push(animal);
+			console.log('恭喜加入合唱团');
+			console.log(choir.length);
+		}
+	}
+	joinchoir(duck);
+		joinchoir(chicken);
+</script>
+</body>
+</html>

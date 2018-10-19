@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>bind</title>
+</head>
+<body>
+<script type="text/javascript">
+	// var bar = function(){
+	// 	console.log(this.x);
+	// }
+	// var foo = {
+	// 	x:3
+	// }
+	// bar(); // undefined
+	// var func = bar.bind(foo);
+	// func();
+
+	Function.prototype.bind = function(context){
+		var self = this;
+		return function(){
+			return self.apply(context, arguments);
+		}
+	}
+
+	var obj = {
+		name : 'sven'
+	}
+	var func = function(){
+		console.log(this.name);
+	}.bind(obj);
+	func();
+
+</script>
+</body>
+</html>

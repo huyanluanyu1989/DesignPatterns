@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>polymorphism</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var makeSound = function (animal){
+			if(animal instanceof duck){
+				 console.log("嘎嘎嘎");
+			}else if(animal instanceof chicken){
+				console.log("咯咯咯");
+			}
+		}
+		var duck = function(){};
+		var chicken = function(){};
+		makeSound(new duck);
+		makeSound(new chicken);
+	</script>
+</body>
+</html>
