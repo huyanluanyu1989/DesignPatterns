@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>closure</title>
+</head>
+<body>
+<div>1</div>
+<div>2</div>
+<div>3</div>
+<div>4</div>
+<div>5</div>
+</body>
+<script type="text/javascript">
+	var nodes = document.getElementsByTagName("div");
+	for(var i = 0;i<nodes.length;i++){
+
+		(function(i){
+			nodes[i].onclick = function(){
+			alert(i);
+			}
+		})(i)
+	}
+
+	//1. 封装变量
+	var mult = (function(){
+		var cache = {};
+		var calculate = function(){
+			var a = 1;
+			for(var i = 0,l = arguments.length;i<l;i++){
+				a = a * arguments[i];
+				console.log(i)
+			}
+			return a;
+		}
+		return function(){
+			var args = Array.prototype.join.call(arguments, ',');
+			if(args in cache){
+				return cache[args];
+			}
+			return cache[args] = calculate.apply(null, arguments);
+		}
+	})()
+	console.log(mult( 1,2,3 ))
+	console.log(mult( 1,2,3 ))
+</script>
+</html>
