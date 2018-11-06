@@ -9,38 +9,112 @@
 <div>3</div>
 <div>4</div>
 <div>5</div>
+
+<!--命令模式-->
+<div>
+	<button id='open'>打开</button>
+	<button id='close'>关闭</button>
+</div>
+
 </body>
 <script type="text/javascript">
-	var nodes = document.getElementsByTagName("div");
-	for(var i = 0;i<nodes.length;i++){
 
-		(function(i){
-			nodes[i].onclick = function(){
-			alert(i);
-			}
-		})(i)
-	}
+	//作用域范围
+	// var func = function(){
+	// 	var a = 1;
+	// 	alert ( a ); // 输出: 1
+	// };
+	// func();
+	// alert ( a ); // 输出：Uncaught ReferenceError: a is not defined
+
+	// ////嵌套函数
+	// var a = 1;
+	// var func1 = function(){
+	// 	var b = 2;
+	// var func2 = function(){
+	// 	var c = 3;
+	// 	alert ( b ); // 输出：2
+	// 	alert ( a ); // 输出：1
+	// }
+	// func2();
+	// 	alert ( c ); // 输出：Uncaught ReferenceError: c is not defined
+	// };
+	// func1();
+
+	//生命周期
+	// var func = function(){
+	// 	var a = 1; // 退出函数后局部变量 a 将被销毁
+	// 	alert ( a );
+	// };
+	// func();
+
+	// var nodes = document.getElementsByTagName("div");
+	// for(var i = 0;i<nodes.length;i++){
+
+	// 	(function(i){
+	// 		nodes[i].onclick = function(){
+	// 		// alert(i);
+	// 		}
+	// 	})(i)
+	// }
 
 	//1. 封装变量
-	var mult = (function(){
-		var cache = {};
-		var calculate = function(){
-			var a = 1;
-			for(var i = 0,l = arguments.length;i<l;i++){
-				a = a * arguments[i];
-				console.log(i)
-			}
-			return a;
-		}
-		return function(){
-			var args = Array.prototype.join.call(arguments, ',');
-			if(args in cache){
-				return cache[args];
-			}
-			return cache[args] = calculate.apply(null, arguments);
-		}
-	})()
-	console.log(mult( 1,2,3 ))
-	console.log(mult( 1,2,3 ))
+	// var mult = (function(){
+	// 	var cache = {};
+	// 	var calculate = function(){
+	// 		var a = 1;
+	// 		for(var i = 0,l = arguments.length;i<l;i++){
+	// 			a = a * arguments[i];
+	// 			console.log(i)
+	// 		}
+	// 		return a;
+	// 	}
+	// 	return function(){
+	// 		var args = Array.prototype.join.call(arguments, ',');
+	// 		if(args in cache){
+	// 			return cache[args];
+	// 		}
+	// 		return cache[args] = calculate.apply(null, arguments);
+	// 	}
+	// })()
+	// console.log(mult( 1,2,3 ))
+	// console.log(mult( 1,2,3 ))
+
+	// //命令模式
+	// var Tv = {
+	// 	open:function(){
+	// 		console.log("打开电视机");
+	// 	},
+	// 	close:function(){
+	// 		console.log("关闭电视机");
+	// 	}
+	// }
+
+	// var creatCommand = function(receiver){
+	// 	var open = function(){
+	// 		return receiver.open();
+	// 	}
+	// 	var close = function(){
+	// 		return receiver.close();
+	// 	}
+
+	// 	return {
+	// 		open:open,
+	// 		close:close
+	// 	}
+	// }
+
+	// var setCommand = function(command){
+	// 	document.getElementById("open").onclick = function(){
+	// 		command.open();
+	// 	}
+	// 	document.getElementById("close").onclick = function(){
+	// 		command.close();
+	// 	}
+	// }
+
+	// setCommand(creatCommand(Tv))
+
+	
 </script>
 </html>
