@@ -46,7 +46,99 @@
 	})();
 	var a = Singleton.getInstance('name1');
 	var b = Singleton.getInstance('name2');
-	console.log(a===b)
+	console.log(a===b);
+
+
+	//透明的单例模式
+	//单例类，在页面内创建唯一的div节点
+	// var CreateDiv = (function(){
+	// 	var instance;
+
+	// 	var CreateDiv = function(html){
+	// 		if(instance){
+	// 			return instance;
+	// 		}
+	// 		this.html = html;
+	// 		this.init();
+
+	// 		return instance = this;
+	// 	}
+	// 	CreateDiv.prototype.init = function(){
+	// 		var div = document.createElement('div');
+	// 		div.innerHTML = this.html;
+	// 		document.body.appendChild(div);
+	// 	}
+	// 	return CreateDiv;
+	// })();
+
+	// var a = new CreateDiv('div1');
+	// var b = new CreateDiv('div2');
+	// console.log(a,b)
+
+	//代理实现单例模式
+	// let CreateDiv = function(html){
+	// 	this.html = html;
+	// 	this.init();
+	// }
+	// CreateDiv.prototype.init = function(){
+	// 	var div = document.createElement('div');
+	// 	div.innerHTML = this.html;
+	// 	document.body.appendChild(div);
+	// }
+
+	// let ProxySingletonCreateDiv = (()=>{
+	// 	var instance;
+	// 	return function( html ){
+	// 		if(!instance){
+	// 			instance = new CreateDiv( html);
+	// 		}
+	// 		return instance;
+	// 	}
+	// })();
+	// var a = new ProxySingletonCreateDiv('div1');
+	// var b = new ProxySingletonCreateDiv('div2');
+	// console.log(a,b)
+	// 
+	/**
+	 * JavaScript中的单例模式
+	 */
+	//动态创建命名空间
+	// var myFun = {};
+	// myFun.nameSpace = function(name){
+	// 	var protoName = name.split('.');
+	// 	var current = myFun;
+	// 	for(var i  in protoName){
+	// 		if(!current[protoName[i]]){
+	// 			current[protoName[i]] = {};
+	// 		}
+	// 		current = current[protoName[i]];
+	// 	}
+	// }
+
+	// myFun.nameSpace('event');
+	// myFun.nameSpace('dom.style');
+	// console.log(myFun)
+
+	// var myFun = {
+	// 	event:{},
+	// 	dom:{
+	// 		style:{}
+	// 	}
+	// }
+	// console.log(myFun)
+	// 
+	
+	//使用闭包封装私有变量
+	var user = (function(){
+		var _name = 'John';
+		var _old = '30';
+		return {
+			getUserInfo:function(){
+				return _name+'-'+_old;
+			}
+		}
+	})();
+	console.log(user.getUserInfo())
 </script>
 </body>
 </html>
