@@ -4,6 +4,7 @@
 	<title>singleton</title>
 </head>
 <body>
+	<input type="button" name="btn" id="btn" value='惰性单例'>
 <script type="text/javascript">
 	//单例模式
 	// var Singleton = function(name){
@@ -129,16 +130,35 @@
 	// 
 	
 	//使用闭包封装私有变量
-	var user = (function(){
-		var _name = 'John';
-		var _old = '30';
-		return {
-			getUserInfo:function(){
-				return _name+'-'+_old;
+	// var user = (function(){
+	// 	var _name = 'John';
+	// 	var _old = '30';
+	// 	return {
+	// 		getUserInfo:function(){
+	// 			return _name+'-'+_old;
+	// 		}
+	// 	}
+	// })();
+	// console.log(user.getUserInfo())
+
+
+	//惰性单例
+	var createLoginLayer = function(){
+		var div;
+		return function(){
+			if(!div){
+				div = document.createElement('div')
+				div.innerHTML = '我是登录浮窗'
+				div.style.display = 'none'
+				document.body.appendChild(div)
 			}
+			return div
 		}
-	})();
-	console.log(user.getUserInfo())
+	}()
+	document.getElementById('btn').onclick = function(){
+		var loginLayer = createLoginLayer()
+		loginLayer.style.display = 'block'
+	}
 </script>
 </body>
 </html>
