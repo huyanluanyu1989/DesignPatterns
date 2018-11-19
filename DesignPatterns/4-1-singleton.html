@@ -143,22 +143,78 @@
 
 
 	//惰性单例
-	var createLoginLayer = function(){
-		var div;
+	// var createLoginLayer = function(){
+	// 	var div;
+	// 	return function(){
+	// 		if(!div){
+	// 			div = document.createElement('div')
+	// 			div.innerHTML = '我是登录浮窗'
+	// 			div.style.display = 'none'
+	// 			document.body.appendChild(div)
+	// 		}
+	// 		return div
+	// 	}
+	// }()
+	// document.getElementById('btn').onclick = function(){
+	// 	var loginLayer = createLoginLayer()
+	// 	loginLayer.style.display = 'block'
+	// }
+
+	//通用的惰性单例
+	var getSingle = function(fn){
+		let result
 		return function(){
-			if(!div){
-				div = document.createElement('div')
-				div.innerHTML = '我是登录浮窗'
-				div.style.display = 'none'
-				document.body.appendChild(div)
-			}
-			return div
+			return result || (result = fn.apply(this,arguments))
 		}
-	}()
-	document.getElementById('btn').onclick = function(){
-		var loginLayer = createLoginLayer()
-		loginLayer.style.display = 'block'
 	}
+
+	var createDiv = function(){
+		var div = document.createElement('div')
+		div.innerHTML = '我是登录浮窗'
+		div.style.display = 'none'
+		document.body.appendChild(div)
+		return div
+	}
+
+	var createSingleDiv = getSingle(createDiv)
+
+	// document.getElementById('btn').onclick = function(){
+	// 	console.log('div')
+	// 	var div = createSingleDiv()
+	// 	div.style.display = 'block'
+	// }
+
+
+	var createFrame = function(){
+		var iframe = document.createElement('iframe')
+		document.body.appendChild(iframe)
+		return iframe
+	}
+
+	var createSingleIFrame = getSingle(createFrame)
+
+	// document.getElementById('btn').onclick = function(){
+	// 	var iframe = createSingleIFrame()
+	// 	iframe.src = 'http://baidu.com'
+	// }
+	
+
+	//绑定click单例
+	var bindEvent = getSingle(function(){
+		document.getElementById('btn').onclick = function(){
+			console.log('click')
+		}
+		return true
+	})
+
+	var render = function(){
+		console.log('开始渲染')
+		bindEvent()
+	}
+
+	render()
+	render()
+	render()
 </script>
 </body>
 </html>
